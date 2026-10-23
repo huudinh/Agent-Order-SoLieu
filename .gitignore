@@ -1,0 +1,13 @@
+# phieu Order that cua khach hang noi bo — khong commit
+out/*
+!out/.gitkeep
+
+# trang huong dan sinh ra tu tools/trang-huong-dan.py — artifact
+tools/huong-dan.html
+
+__pycache__/
+*.pyc
+*.local.json
+~$*
+.DS_Store
+Thumbs.db

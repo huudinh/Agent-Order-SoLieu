@@ -1,0 +1,440 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Phiếu Order báo cáo — Team Số liệu HCI",
+  "description": "Vật bàn giao giữa người yêu cầu và kỹ thuật. ⛔ Không ghi tên thật, SĐT, email hay bệnh án của khách hàng vào bất kỳ trường nào.",
+  "type": "object",
+  "required": [
+    "ma_order",
+    "ngay",
+    "nguoi_yeu_cau",
+    "nguoi_duyet",
+    "cau_hoi_kinh_doanh",
+    "quyet_dinh_di_kem",
+    "loai_bao_cao",
+    "dinh_nghia",
+    "chi_so",
+    "chieu_cat",
+    "pham_vi_thoi_gian",
+    "nguon_du_lieu",
+    "tan_suat",
+    "nghiem_thu",
+    "han_chot"
+  ],
+  "properties": {
+    "ma_order": {
+      "type": "string",
+      "pattern": "^ORD-[0-9]{4}-[0-9]{4}-[A-Za-z0-9]+-[0-9]+(-v[0-9]+)?$",
+      "description": "ORD-<yyyy>-<mmdd>-<bộ phận>-<số>[-v<phiên bản>]",
+      "examples": [
+        "ORD-2026-1023-MKT-01",
+        "ORD-2026-1023-MKT-01-v2"
+      ]
+    },
+    "ngay": {
+      "type": "string",
+      "format": "date"
+    },
+    "trang_thai": {
+      "type": "string",
+      "enum": [
+        "NHAP",
+        "DA_DUYET",
+        "DANG_DUNG",
+        "NGHIEM_THU",
+        "DANG_CHAY",
+        "SUA_LAI"
+      ],
+      "default": "NHAP",
+      "description": "Vòng đời Order. ⛔ Đổi yêu cầu sau DA_DUYET thì mở phiên bản -v2, không sửa đè."
+    },
+    "nguoi_yeu_cau": {
+      "type": "object",
+      "required": [
+        "ten",
+        "bo_phan"
+      ],
+      "properties": {
+        "ten": {
+          "type": "string"
+        },
+        "bo_phan": {
+          "type": "string",
+          "examples": [
+            "Marketing",
+            "Ban thương hiệu",
+            "Cơ sở Hà Nội"
+          ]
+        },
+        "thuong_hieu": {
+          "type": "string"
+        }
+      }
+    },
+    "nguoi_duyet": {
+      "type": "object",
+      "required": [
+        "ten"
+      ],
+      "properties": {
+        "ten": {
+          "type": "string"
+        },
+        "ngay_duyet": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "hinh_thuc": {
+          "type": "string",
+          "examples": [
+            "xác nhận trong chat",
+            "email",
+            "họp"
+          ]
+        }
+      },
+      "description": "Cổng B. Chưa có ngay_duyet thì ⛔ không chuyển kỹ thuật."
+    },
+    "cau_hoi_kinh_doanh": {
+      "type": "string",
+      "description": "MỘT câu. ⛔ Không phải mô tả bảng. Ví dụ đúng: 'Tiền quảng cáo line Mũi tháng 10 có về không?'"
+    },
+    "quyet_dinh_di_kem": {
+      "type": "string",
+      "description": "Số ra xấu thì làm gì, ra đẹp thì làm gì. Hai vế giống nhau → báo cáo này không cần dựng."
+    },
+    "loai_bao_cao": {
+      "type": "string",
+      "enum": [
+        "doanh-so-mkt",
+        "doanh-so-co-so",
+        "doanh-so-thuong-hieu",
+        "doanh-so-tap-doan",
+        "doanh-so-dich-vu",
+        "ket-cau-doanh-so-mkt",
+        "khac"
+      ]
+    },
+    "dinh_nghia": {
+      "type": "object",
+      "description": "BẢY CÂU của so-B, cộng CÂU 8 (quy_gan_nguon) nếu là báo cáo ① hoặc ⑥. Thiếu một câu → cổng A ô A2 trượt.",
+      "required": [
+        "loai_doanh_so",
+        "moc_thoi_gian",
+        "gom_tru",
+        "tinh_ai",
+        "quy_ve",
+        "vat",
+        "da_dich_vu"
+      ],
+      "properties": {
+        "loai_doanh_so": {
+          "type": "string",
+          "enum": [
+            "ghi_nhan",
+            "thuc_thu",
+            "da_thuc_hien"
+          ]
+        },
+        "moc_thoi_gian": {
+          "type": "string",
+          "enum": [
+            "ngay_chot",
+            "ngay_thuc_hien",
+            "ngay_thu_tien"
+          ]
+        },
+        "gom_tru": {
+          "type": "object",
+          "required": [
+            "hoan_huy",
+            "chiet_khau",
+            "the_tra_truoc",
+            "tra_gop",
+            "dich_vu_tang"
+          ],
+          "properties": {
+            "hoan_huy": {
+              "type": "string",
+              "examples": [
+                "trừ vào tháng phát sinh",
+                "trừ vào tháng gốc",
+                "không trừ"
+              ]
+            },
+            "chiet_khau": {
+              "type": "string",
+              "examples": [
+                "giá sau chiết khấu",
+                "giá niêm yết"
+              ]
+            },
+            "the_tra_truoc": {
+              "type": "string",
+              "examples": [
+                "ghi nhận khi BÁN thẻ",
+                "ghi nhận khi DÙNG thẻ"
+              ]
+            },
+            "tra_gop": {
+              "type": "string",
+              "examples": [
+                "ghi nhận trọn gói",
+                "ghi nhận theo kỳ"
+              ]
+            },
+            "dich_vu_tang": {
+              "type": "string",
+              "examples": [
+                "tính 0đ",
+                "tính theo giá niêm yết"
+              ]
+            }
+          }
+        },
+        "tinh_ai": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "quy_ve": {
+          "type": "string",
+          "enum": [
+            "nguon_lead",
+            "nhan_vien",
+            "co_so",
+            "thuong_hieu",
+            "dich_vu"
+          ]
+        },
+        "vat": {
+          "type": "string",
+          "enum": [
+            "truoc_vat",
+            "sau_vat"
+          ]
+        },
+        "da_dich_vu": {
+          "type": "string",
+          "description": "Quy tắc phân bổ khi khách dùng nhiều dịch vụ hoặc nhiều thương hiệu"
+        },
+        "quy_gan_nguon": {
+          "type": "string",
+          "enum": [
+            "cham_dau",
+            "cham_cuoi",
+            "chia_deu",
+            "tat_ca"
+          ],
+          "description": "CÂU 8 — chỉ bắt buộc với loai_bao_cao = doanh-so-mkt hoặc ket-cau-doanh-so-mkt. Khách đi qua nhiều kênh thì kênh nào được tính công. 'tat_ca' thì ⛔ KHÔNG được cộng ngang các bảng kênh."
+        }
+      }
+    },
+    "chi_so": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "ten",
+          "tu_so",
+          "mau_so"
+        ],
+        "properties": {
+          "ten": {
+            "type": "string"
+          },
+          "cong_thuc": {
+            "type": "string"
+          },
+          "tu_so": {
+            "type": "string"
+          },
+          "mau_so": {
+            "type": "string",
+            "description": "⚠️ Mẫu số là chỗ sai nhiều hơn tử số. Ghi 'không có' nếu là số tuyệt đối."
+          },
+          "don_vi": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "chieu_cat": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "pham_vi_thoi_gian": {
+      "type": "object",
+      "required": [
+        "ky_bao_cao"
+      ],
+      "properties": {
+        "ky_bao_cao": {
+          "type": "string"
+        },
+        "ky_so_sanh": {
+          "type": "string"
+        },
+        "canh_bao_cung_loai_ky": {
+          "type": "string",
+          "description": "Tháng 30 ngày không so thẳng với tháng 28 ngày"
+        }
+      }
+    },
+    "nguon_du_lieu": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "he_thong"
+        ],
+        "properties": {
+          "he_thong": {
+            "type": "string"
+          },
+          "bang": {
+            "type": "string"
+          },
+          "nguoi_so_huu": {
+            "type": "string"
+          },
+          "do_tre": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tan_suat": {
+      "type": "object",
+      "required": [
+        "kieu"
+      ],
+      "properties": {
+        "kieu": {
+          "type": "string",
+          "enum": [
+            "mot_lan",
+            "hang_ngay",
+            "hang_tuan",
+            "hang_thang"
+          ]
+        },
+        "gio_cap_nhat": {
+          "type": "string"
+        },
+        "ghi_chu": {
+          "type": "string",
+          "description": "mot_lan → ghi rõ KHÔNG BẢO TRÌ"
+        }
+      }
+    },
+    "nghiem_thu": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "description": "Tiêu chí ĐẾM ĐƯỢC. ⛔ Không nhận 'dễ nhìn', 'chạy mượt'."
+    },
+    "han_chot": {
+      "type": "object",
+      "required": [
+        "ngay"
+      ],
+      "properties": {
+        "ngay": {
+          "type": "string",
+          "format": "date"
+        },
+        "uu_tien": {
+          "type": "string",
+          "enum": [
+            "cao",
+            "trung_binh",
+            "thap"
+          ]
+        }
+      }
+    },
+    "cong_a": {
+      "type": "object",
+      "description": "Kết quả 8 ô cổng A. true = ĐẠT.",
+      "properties": {
+        "A1_co_cau_hoi_kinh_doanh": {
+          "type": "boolean"
+        },
+        "A2_du_bay_cau_dinh_nghia": {
+          "type": "boolean"
+        },
+        "A3_chi_so_co_mau_so": {
+          "type": "boolean"
+        },
+        "A4_du_lieu_ton_tai": {
+          "type": "boolean"
+        },
+        "A5_do_min_du": {
+          "type": "boolean"
+        },
+        "A6_co_nguoi_so_huu": {
+          "type": "boolean"
+        },
+        "A7_co_tan_suat_han_chot": {
+          "type": "boolean"
+        },
+        "A8_khong_trung_bao_cao_cu": {
+          "type": "boolean"
+        }
+      }
+    },
+    "bao_cao_lien_quan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rui_ro_du_lieu": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gia_dinh": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Những gì agent tự mặc định khi người yêu cầu không biết trả lời. BẮT BUỘC in đậm ở cổng B."
+    },
+    "cho_xac_nhan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "muc",
+          "ai_cap"
+        ],
+        "properties": {
+          "muc": {
+            "type": "string"
+          },
+          "ai_cap": {
+            "type": "string"
+          },
+          "chan_gi": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

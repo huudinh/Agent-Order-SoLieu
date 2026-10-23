@@ -8,6 +8,21 @@ Kiến trúc **BRAIN brand-neutral** ([`SYSTEM-PROMPT.md`](SYSTEM-PROMPT.md)) + 
 
 ---
 
+## 📘 Hướng dẫn sử dụng
+
+> ### → **[Mở trang hướng dẫn](https://claude.ai/artifact/DPe8Ttj1yMaoKVCnsSn7Ht)**
+>
+> | Mục | Có gì ở đó |
+> |---|---|
+> | **① Cài đặt** | Tên &amp; mô tả dán sẵn · tab Claude/ChatGPT/Gemini · 3 thẻ copy bộ não · 11 file tri thức copy được từng file · **smoke test 7 câu** |
+> | **② Prompt mẫu** | 14 prompt lọc theo bước: tiếp nhận · chốt định nghĩa · ra Order · nghiệm thu · dòng lệnh |
+> | **③ Bốn điều phải biết** | *“Doanh số” không phải một con số* · **bảy câu hỏi bằng lời thường** · **luật cộng ngang** · hai cổng và ba loại yêu cầu |
+> | **④ Việc đang chặn** | 7 mục 🔴🟠🟡 — ai cấp, chặn gì |
+>
+> Trang sinh thẳng từ nội dung repo bằng `python tools/trang-huong-dan.py`, nên **nút Copy luôn khớp file nguồn**.
+
+**Người mới bắt đầu từ trang đó, không phải từ đây.** Repo này là phần file để cài vào Project/GPT/Gem — trang hướng dẫn nói *khi nào dùng cái gì*.
+
 ## Nguyên tắc tối thượng
 
 > ### "Doanh số" không phải một con số. Nó là một câu hỏi chưa hỏi xong.

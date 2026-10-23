@@ -1,0 +1,200 @@
+{
+  "ma": "ordersolieu",
+  "title": "Order Số liệu HCI",
+  "h1": "Tiếp nhận yêu cầu báo cáo — Team Số liệu",
+  "eyebrow": "Hướng dẫn cài đặt & câu lệnh",
+  "ten_agent": "Agent-Order-SoLieu",
+  "repo": "https://github.com/huudinh/Agent-Order-SoLieu",
+  "buoc2": "<b>Thẻ A</b> vào ô chỉ dẫn",
+  "mo_ta_agent": "Tiếp nhận yêu cầu báo cáo từ phòng Marketing, các thương hiệu và tập đoàn lên Team Số liệu HCI. Hỏi cho rõ mục tiêu, chốt bảy câu định nghĩa doanh số, dựng mẫu báo cáo để duyệt, rồi ra Phiếu Order đủ để kỹ thuật dựng ngay. Không dựng dashboard, không đoán số.",
+  "lede": "Tiếp nhận yêu cầu báo cáo từ <b>phòng Marketing · các thương hiệu · tập đoàn · cơ sở</b> → hỏi cho rõ → <b>chốt định nghĩa</b> → ra <b>Phiếu Order</b> đủ để Team Số liệu dựng được ngay. Cài xong trong <b>~15 phút</b>.",
+  "quick": "Agent <b>đứng giữa</b>: người cần báo cáo <span class=\"ar\">&rarr;</span> <b>Order</b> <span class=\"ar\">&rarr;</span> người dựng báo cáo<br><span class=\"quick-x\">⛔ Agent không có dữ liệu, không dựng dashboard, và không trả lời bất kỳ con số nào.</span>",
+  "chips": ["v1.0", "6 module tri thức", "6 bước · 2 cổng", "★ bảy câu định nghĩa", "phiếu Order 14 trường", "6 loại báo cáo", "Claude · ChatGPT · Gemini"],
+  "dim": "Nguyên tắc tối thượng: <b>“doanh số” không phải một con số — nó là một câu hỏi chưa hỏi xong.</b> Giá trị của agent nằm ở chỗ nó HỎI, không nằm ở chỗ nó làm.",
+
+  "cai_dat_intro": "Agent là <b>prompt + tri thức</b>, không phải phần mềm. Nửa tay <code>tools/order.py</code> chạy cổng A bằng máy và in phiếu Order — cần Python, không cần thư viện ngoài.",
+  "dl_mo_ta": "Toàn bộ repo: bộ não đầy đủ và bản ngắn · 6 module tri thức · 4 prompt mẫu · schema phiếu Order · mẫu 4 báo cáo · công cụ kiểm cổng A.",
+
+  "cau_mo_dau": [
+    "Có yêu cầu báo cáo mới. Tiếp nhận giúp tôi.",
+    "Chốt bảy câu định nghĩa cho báo cáo Doanh số MKT.",
+    "Marketing và Kế toán đang ra hai số khác nhau cho cùng tháng 9. Rà giúp tôi.",
+    "Yêu cầu này có trùng với báo cáo nào đang chạy không?"
+  ],
+
+  "tabs": [
+    {
+      "ten": "Claude Project",
+      "tieu_de": "Claude Project — khuyến nghị",
+      "mo_ta": "Ô instructions không giới hạn ký tự nên dùng được bộ não đầy đủ. Agent này hay phải giữ nhiều ngữ cảnh cùng lúc (yêu cầu gốc + bảy câu + mẫu báo cáo), nên cửa sổ rộng là lợi thế thật.",
+      "buoc": [
+        "<b>Projects</b> &rarr; <b>Create project</b>, tên và mô tả lấy ở khối phía trên.",
+        "<b>Custom instructions</b> &rarr; dán <b>Thẻ A &middot; Bộ não</b>.",
+        "<b>Add content</b> &rarr; upload <b>đủ 11 file</b> ở khối dưới.",
+        "Mở chat mới &rarr; chạy <b>7 câu smoke test</b> ở dưới."
+      ]
+    },
+    {
+      "ten": "ChatGPT Custom GPT",
+      "tieu_de": "ChatGPT Custom GPT",
+      "mo_ta": "Ô Instructions chặn ở <b>8.000 ký tự</b> &rarr; dùng bản ngắn. Knowledge cho tới 20 file nên nạp được cả 11 file bản rời.",
+      "buoc": [
+        "<b>Explore GPTs</b> &rarr; <b>Create</b> &rarr; tab <b>Configure</b>.",
+        "Name và Description &rarr; lấy ở khối phía trên.",
+        "Instructions &rarr; dán <b>Thẻ B &middot; Bộ não ngắn</b>.",
+        "Knowledge &rarr; upload <b>cả 11 file</b>.",
+        "⛔ Tắt <b>Web Browsing</b> — agent này không cần tra mạng, và càng ít công cụ thì nó càng ít đi lạc."
+      ],
+      "ghi_kieu": "stop",
+      "ghi_chu": "<p style=\"margin-bottom:0\"><b>Bản ngắn đã cắt bảng chi tiết và trông vào Knowledge để bù.</b> Không nạp đủ file thì agent bắt đầu đoán ở đúng chỗ đắt nhất: <b>định nghĩa doanh số</b>. Lúc đó nó vẫn ra Order trông rất gọn — nhưng Order đó sẽ dựng ra một con số không ai công nhận.</p>"
+    },
+    {
+      "ten": "Gemini Gems",
+      "tieu_de": "Gemini Gems",
+      "mo_ta": "Ô Chỉ dẫn nhận được bản đầy đủ. Knowledge chặn ở <b>10 file</b> — gói này có 11, nên dùng bản gộp cho phần tri thức.",
+      "buoc": [
+        "<b>Gems</b> &rarr; <b>New Gem</b>, tên và mô tả lấy ở khối phía trên.",
+        "Ô <b>Chỉ dẫn</b> &rarr; dán <b>Thẻ A &middot; Bộ não</b>.",
+        "Ô <b>Kiến thức</b> &rarr; upload <b>Thẻ C</b> (<code>goi/GOP-tri-thuc.md</code>) + 4 file <code>prompts/</code> + <code>template/mau-bao-cao-doanh-so.md</code>. Sáu file, còn dư 4 chỗ."
+      ],
+      "ghi_chu": "<p style=\"margin-bottom:0\"><b>Đánh đổi của bản gộp:</b> mất khả năng thay riêng một module — sửa <code>so-B</code> là phải sinh lại và upload lại cả bản gộp. Sinh lại: <code>python tools/gop-tham-khao.py</code>.</p>"
+    }
+  ],
+
+  "the_mo_ta": "Thẻ A và B <b>dán vào ô văn bản</b>. Thẻ C là <b>file upload</b> — chỉ dùng khi nền tảng chặn số file.",
+  "brain": "SYSTEM-PROMPT.md",
+  "brain_ngan": "SYSTEM-PROMPT-NGAN.md",
+  "the": [
+    {"ma": "brain", "nhan": "Thẻ A", "ten": "Bộ não đầy đủ", "nen_tang": "Claude &amp; Gemini",
+     "mo_ta": "§0–§16: quy trình 6 bước · hai cổng · bảy câu định nghĩa · luật cộng ngang · 6 loại báo cáo · ranh giới riêng tư"},
+    {"ma": "ngan", "nhan": "Thẻ B", "ten": "Bộ não ngắn", "tran": 8000, "nen_tang": "chỉ ChatGPT",
+     "mo_ta": "Giữ nguyên hai cổng chặn và bảy câu định nghĩa, cắt bảng chi tiết — bù bằng Knowledge."},
+    {"ma": "gop", "file": "goi/GOP-tri-thuc.md", "nhan": "Thẻ C", "ten": "Tri thức gộp",
+     "mo_ta": "Cả 6 file <code>knowledge/</code> trong một. Mỗi phần mở đầu bằng tên file nên agent vẫn đọc đúng từng module"}
+  ],
+
+  "files_mo_ta": "Thứ tự dưới đây <b>là thứ tự agent đọc</b>: <b>quy trình → từ điển định nghĩa → loại báo cáo → phiếu Order → nguồn dữ liệu → giao tiếp</b>, rồi tới 4 prompt và mẫu báo cáo.",
+  "files_canh_bao": "<p style=\"margin-bottom:0\"><b>File lõi nhất là <code>so-B-tu-dien-doanh-so.md</code>.</b> Thiếu nó thì agent <i>vẫn ra Order</i> — Order trông gọn gàng, đủ trường, kỹ thuật dựng được ngay. Nhưng con số dựng ra sẽ không khớp với con số của phòng khác, và <b>không ai biết vì sao</b> cho tới cuộc họp. Đó là lý do bảy câu định nghĩa là cổng chặn chứ không phải lời khuyên.</p>",
+  "files": [
+    {"duong_dan": "knowledge/so-A-vai-tro-quy-trinh.md", "badge": "★ lõi",
+     "mo_ta": "<b>Vai trò &amp; quy trình</b> — 6 bước · <b>cổng A 8 ô</b> · cổng B · ba loại yêu cầu (định kỳ / một lần / khẩn) · ranh giới agent nói không ở đâu"},
+    {"duong_dan": "knowledge/so-B-tu-dien-doanh-so.md", "badge": "★ cổng chặn",
+     "mo_ta": "<b>Bảy câu định nghĩa</b> · <b>luật cộng ngang</b> (MKT + Cơ sở + Thương hiệu ≠ Tập đoàn) · từ điển chỉ số marketing và bẫy mẫu số"},
+    {"duong_dan": "knowledge/so-C-bon-bao-cao.md", "badge": "★ lõi",
+     "mo_ta": "<b>6 loại báo cáo</b> — trục, mốc mặc định và <b>bẫy đặc trưng</b> của từng loại · ba dòng bắt buộc in trên mặt bảng"},
+    {"duong_dan": "knowledge/so-D-phieu-order.md", "badge": "",
+     "mo_ta": "<b>Phiếu Order 14 trường</b> · khuôn in cho người duyệt · 3 lỗi viết Order hay gặp · vòng đời một Order"},
+    {"duong_dan": "knowledge/so-E-nguon-du-lieu.md", "badge": "",
+     "mo_ta": "<b>Nguồn dữ liệu</b> · độ mịn · 3 rủi ro dữ liệu · <b>quyền riêng tư</b> — báo cáo chạy trên số tổng hợp, không chạy trên danh sách khách"},
+    {"duong_dan": "knowledge/so-F-giao-tiep-tu-choi.md", "badge": "",
+     "mo_ta": "<b>Giọng</b> nói với người không làm dữ liệu · <b>5 tình huống nói không</b> · mẫu tin nhắn nhận đơn, trình mẫu, từ chối"},
+    {"duong_dan": "prompts/prompt-tiep-nhan.md", "badge": "",
+     "mo_ta": "B1–B2 — ba câu mở đầu · phân loại yêu cầu · khi người yêu cầu không biết mình muốn gì"},
+    {"duong_dan": "prompts/prompt-chot-dinh-nghia.md", "badge": "★",
+     "mo_ta": "B3 — bảy câu <b>hỏi bằng lời thường</b> · mặc định theo loại báo cáo · câu phải nói khi hai phòng xin hai định nghĩa"},
+    {"duong_dan": "prompts/prompt-ra-order.md", "badge": "",
+     "mo_ta": "B4–B6 — chạy cổng A · dựng mẫu cho cổng B · bàn giao · cách viết nghiệm thu đếm được"},
+    {"duong_dan": "prompts/prompt-nghiem-thu.md", "badge": "",
+     "mo_ta": "Nghiệm thu · <b>khi số không khớp thì rà theo thứ tự nào</b> · rà soát danh mục mỗi quý · khi đổi ý sau khi đã duyệt"},
+    {"duong_dan": "template/mau-bao-cao-doanh-so.md", "badge": "",
+     "mo_ta": "<b>Mẫu 4 báo cáo</b> dùng ở cổng B — số giả, đủ ba dòng bắt buộc, kèm ba câu hỏi gửi người duyệt"}
+  ],
+
+  "smoke": [
+    {"go": "Cho chị xem doanh số tháng 9 là bao nhiêu", "thay": "<b>Không đưa ra con số nào</b> — chuyển người sở hữu số liệu, rồi đề nghị làm phiếu order", "hl": true},
+    {"go": "Em cần bảng có cột tháng, cột doanh số, cột %", "thay": "<b>Hỏi ngược:</b> <i>“để quyết định việc gì?”</i> — không nhận mô tả bảng làm yêu cầu", "hl": true},
+    {"go": "Doanh số line Mũi tháng 10", "thay": "Hỏi <b>bảy câu định nghĩa</b>, bắt đầu từ <i>“tính lúc khách ký, lúc làm, hay lúc tiền về?”</i>", "hl": true},
+    {"go": "Chị không rành, em quyết hộ", "thay": "Dùng <b>mặc định của loại báo cáo</b>, in đậm khối <b>GIẢ ĐỊNH</b>, vẫn bắt duyệt ở cổng B", "hl": false},
+    {"go": "Cho chị danh sách khách tháng này để gọi", "thay": "<b>Từ chối</b> — báo cáo chạy trên số tổng hợp; chuyển sang CRM", "hl": false},
+    {"go": "Cộng ba bảng MKT + Cơ sở + Thương hiệu ra tổng tập đoàn nhé", "thay": "<b>Cảnh báo luật cộng ngang</b> — khác trục, khác mốc, ⛔ không cộng được", "hl": true},
+    {"go": "Nghiệm thu là báo cáo dễ nhìn, chạy mượt", "thay": "<b>Từ chối</b> — đổi thành phép so khớp có con số", "hl": false}
+  ],
+  "smoke_ghi": "<p style=\"margin-bottom:0\"><b>Câu 1 và câu 3 là hai câu quan trọng nhất.</b> Câu 1 kiểm ranh giới cứng — một agent vừa nhận yêu cầu vừa trả lời số sẽ bị hỏi số nhiều hơn là được nhờ viết Order, và rồi nó sẽ bắt đầu đoán. Câu 3 kiểm cổng chặn thật: nhận đơn <i>“doanh số line Mũi tháng 10”</i> mà không hỏi lại là nhận một yêu cầu <b>chưa có nghĩa</b>.</p>",
+
+  "prompt_intro": "Bốn nhóm theo đúng sáu bước: tiếp nhận → chốt định nghĩa → ra Order → nghiệm thu. Cộng các câu hỏi vận hành hỏi thẳng được.",
+  "nhom_prompt": [
+    {"ma": "b12", "ten": "B1–B2 Tiếp nhận"},
+    {"ma": "b3", "ten": "B3 Chốt định nghĩa"},
+    {"ma": "b456", "ten": "B4–B6 Ra Order"},
+    {"ma": "nt", "ten": "Nghiệm thu & rà soát"},
+    {"ma": "cli", "ten": "Dòng lệnh"}
+  ],
+  "prompts": [
+    {"nhom": "b12", "ten": "Tiếp nhận một yêu cầu mới", "kieu": "chuẩn",
+     "noi_dung": "Có yêu cầu báo cáo mới. Tiếp nhận giúp tôi.\n\nNGƯỜI YÊU CẦU : [tên — bộ phận — thương hiệu]\nHỌ NÓI        : \"[dán nguyên văn yêu cầu, đừng diễn giải lại]\"\n\nLàm theo B1 → B2:\n- Hỏi ba câu mở đầu trước, KHÔNG hỏi cột trước.\n- Hỏi tối đa 3 câu một lượt, mỗi câu kèm phương án chọn sẵn.\n- Xác định đây là yêu cầu ĐỊNH KỲ, MỘT LẦN hay KHẨN.\n- Chưa chốt định nghĩa thì chưa sang B3."},
+    {"nhom": "b12", "ten": "Người yêu cầu không biết mình muốn gì", "kieu": "thường",
+     "noi_dung": "Người yêu cầu nói \"chị cũng không rõ, em xem có gì hay thì làm\".\n\nGỡ giúp tôi theo bốn cách:\n① Hỏi quyết định, đừng hỏi cột\n② Đưa mẫu thô để họ phản ứng\n③ Hỏi hiện đang xem bằng gì, chỗ nào bất tiện\n④ Đề xuất một bộ mặc định để họ phản đối"},
+    {"nhom": "b12", "ten": "Phân loại định kỳ hay một lần", "kieu": "thường",
+     "noi_dung": "Yêu cầu này nên là dashboard định kỳ hay chỉ một truy vấn một lần?\n\nNếu là một lần thì ghi rõ KHÔNG BẢO TRÌ và nói lý do,\nđể sau này không ai tưởng đó là báo cáo phải nuôi."},
+    {"nhom": "b3", "ten": "Chốt bảy câu định nghĩa", "kieu": "★ bắt buộc",
+     "noi_dung": "Chốt định nghĩa cho yêu cầu này.\n\nLOẠI BÁO CÁO : [doanh số MKT / cơ sở / thương hiệu / tập đoàn / dịch vụ / kết cấu]\n\nHỏi đủ BẢY CÂU. Với mỗi câu:\n- Nêu các phương án bằng LỜI THƯỜNG, không dùng thuật ngữ.\n- Nói rõ mặc định đề xuất của loại báo cáo này và VÌ SAO.\n- Nêu hệ quả nếu chọn khác.\n\nNgười yêu cầu không biết trả lời thì dùng mặc định và ghi vào khối GIẢ ĐỊNH.\n⛔ KHÔNG tự chốt thay Kế toán — ghi rõ đây là đề xuất chờ ký."},
+    {"nhom": "b3", "ten": "Hai phòng xin hai định nghĩa", "kieu": "xử lý xung đột",
+     "noi_dung": "Phòng [A] đang tính doanh số theo [X], phòng [B] theo [Y].\n\nSoạn giúp tôi câu nói với cả hai bên:\n- Nêu rõ hai bảng sẽ ra hai số khác nhau và sẽ có người đem so\n- Đưa hai đường: chốt một định nghĩa chung, hoặc giữ hai bảng và in rõ định nghĩa\n- Để họ quyết\n\n⛔ Không im lặng làm cả hai."},
+    {"nhom": "b3", "ten": "Giải thích bẫy thẻ trả trước", "kieu": "thường",
+     "noi_dung": "Giải thích cho người yêu cầu hiểu bẫy thẻ trả trước,\nbằng lời thường, trong 3 câu:\n\n- Ghi nhận lúc BÁN thẻ thì tháng đó đẹp, tháng sau trống\n- Ghi nhận lúc DÙNG thẻ thì ngược lại\n- Phải chốt một lần cho mọi báo cáo, không đổi theo từng ca"},
+    {"nhom": "b456", "ten": "Chạy cổng A", "kieu": "⛔ cổng chặn",
+     "noi_dung": "Chạy cổng A cho yêu cầu này. In đủ 8 ô ĐẠT/TRƯỢT,\nô nào trượt phải nói rõ thiếu gì và cần ai cấp.\n\n⛔ Chưa qua đủ 8 ô thì chưa in phiếu cho người yêu cầu duyệt."},
+    {"nhom": "b456", "ten": "Dựng mẫu báo cáo cho cổng B", "kieu": "⛔ cổng chặn",
+     "noi_dung": "Dựng MẪU báo cáo cho phiếu này.\n\nYêu cầu:\n- Số trong mẫu phải NHÌN LÀ BIẾT GIẢ — dùng 1.000 · 2.000 hoặc [số mẫu].\n- Đủ cột, đủ dòng tổng, đủ dòng so sánh kỳ trước.\n- Có đủ BA DÒNG bắt buộc ở đầu bảng:\n    loại doanh số · mốc thời gian · phạm vi + nguồn + giờ cập nhật\n- Kèm ba câu hỏi cho người duyệt:\n    thiếu cột nào không · ba dòng định nghĩa đúng chưa ·\n    nhìn bảng này có ra được quyết định như lúc đầu nói không"},
+    {"nhom": "b456", "ten": "Xuất gói bàn giao kỹ thuật", "kieu": "chuẩn",
+     "noi_dung": "Xuất gói bàn giao cho kỹ thuật, đủ ba phần:\n① Phiếu Order 14 trường\n② Mẫu báo cáo đã duyệt\n③ Tiêu chí nghiệm thu ĐẾM ĐƯỢC\n\nKèm cảnh báo nếu có: mốc lệch mặc định · rủi ro dữ liệu · giả định agent tự đặt."},
+    {"nhom": "nt", "ten": "Nghiệm thu một báo cáo", "kieu": "chuẩn",
+     "noi_dung": "Kỹ thuật đã dựng xong báo cáo theo phiếu [mã order].\nChạy nghiệm thu giúp tôi.\n\nVới mỗi tiêu chí: ĐẠT / CHƯA ĐẠT / KHÔNG KIỂM ĐƯỢC.\n\nKiểm thêm ba thứ không nằm trong tiêu chí:\n- Mặt bảng có đủ ba dòng định nghĩa chưa\n- Con số tổng có khớp định nghĩa đã chốt không\n- Có chỗ nào dễ bị đem cộng ngang với báo cáo khác không"},
+    {"nhom": "nt", "ten": "Khi hai bên ra hai số khác nhau", "kieu": "★ hay gặp",
+     "noi_dung": "Báo cáo ra [số A], nhưng [người/hệ thống] nói là [số B]. Chênh [X]%.\n\nRà theo thứ tự này, đừng đổ lỗi trước:\n① Hai bên có dùng CÙNG loại doanh số không?\n② CÙNG mốc thời gian không?\n③ CÙNG quy tắc gồm-trừ không?\n④ CÙNG phạm vi khách không?\n⑤ Sau đó mới tới lỗi kỹ thuật.\n\nPhần lớn chênh lệch dừng ở bước ① hoặc ②."},
+    {"nhom": "nt", "ten": "Rà soát danh mục mỗi quý", "kieu": "định kỳ",
+     "noi_dung": "Rà danh mục báo cáo đang chạy.\n\nVới mỗi báo cáo:\n- 3 tháng qua có ai mở không? Bao nhiêu lần?\n- Quyết định ghi trong phiếu còn đúng không?\n- Có trùng với báo cáo khác mới dựng không?\n- Định nghĩa còn khớp với định nghĩa chung không?\n\nXếp thành ba nhóm: GIỮ · GỘP · NGỪNG."},
+    {"nhom": "nt", "ten": "Đổi ý sau khi đã duyệt", "kieu": "thường",
+     "noi_dung": "Phiếu [mã] đã duyệt và đang dựng, nhưng người yêu cầu muốn đổi [X].\n\n⛔ Không sửa đè phiếu cũ. Mở phiên bản mới:\n- Mã mới: [mã]-v2\n- Ghi rõ đổi gì, vì sao, ai yêu cầu, ngày nào\n- Nêu phần kỹ thuật đã làm có dùng lại được không\n\nRồi chạy lại cổng A cho bản v2."},
+    {"nhom": "cli", "ten": "Ba lệnh của order.py", "kieu": "dòng lệnh",
+     "noi_dung": "python tools/order.py kiem    template/phieu-order.mau.json   # cổng A, 8 ô\npython tools/order.py phieu   template/phieu-order.mau.json   # in phiếu bản người đọc\npython tools/order.py bangiao template/phieu-order.mau.json   # gói bàn giao kỹ thuật\n\npython tools/gop-tham-khao.py                                 # gộp tri thức"}
+  ],
+  "prompt_ghi": "<p style=\"margin-bottom:0\"><b>Vì sao agent luôn hỏi “để quyết định việc gì”.</b> Báo cáo không có quyết định đi kèm là báo cáo để ngắm. Câu lọc mạnh nhất là câu thứ hai: <i>“số ra xấu thì làm gì, ra đẹp thì làm gì?”</i> — hai câu trả lời giống nhau thì <b>báo cáo đó không cần dựng</b>, và dừng ở đây rẻ hơn rất nhiều so với dừng sau khi kỹ thuật đã dựng xong.</p>",
+
+  "dieu_intro": "Bốn thứ quyết định Order dùng được hay không. Thứ nhất là nguyên tắc nền; ba thứ còn lại là chỗ hay làm sai nhất.",
+  "dieu": [
+    {
+      "pre": "Điều 1",
+      "h3": "&ldquo;Doanh số&rdquo; không phải một con số",
+      "html": "<div class=\"note stop\"><p><b>Tình huống có thật và lặp đi lặp lại:</b> Marketing xin <i>“doanh số tháng 10 của line Mũi”</i>. Kỹ thuật dựng xong. Marketing xem rồi nói <i>“sao thấp thế, bên em ghi nhận cao hơn nhiều”</i>. Kế toán xem rồi nói <i>“số này cao hơn sổ của chị”</i>.</p><p style=\"margin-bottom:0\"><b>Cả ba đều đúng</b> — ba người đang nói về ba con số khác nhau mà ai cũng gọi là <i>doanh số</i>. Mỗi lần như vậy mất <b>ít nhất một vòng dựng lại</b>, và lần sau không ai tin bảng nữa.</p></div><div class=\"vs\"><div class=\"bad\"><div class=\"h\">Nhận đơn theo mô tả bảng</div><div class=\"w\">Nhanh, và sai</div><p>Người yêu cầu nói cần cột gì → dựng đúng cột đó → giao.</p><p class=\"me\">Bảng đủ cột mà <b>ra số không ai công nhận</b></p></div><div class=\"good\"><div class=\"h\">Chốt định nghĩa trước</div><div class=\"w\">Chậm một lượt, và đúng</div><p>Hỏi bảy câu → chốt → dựng mẫu → duyệt → mới giao kỹ thuật.</p><p class=\"me\">Con số <b>có một nghĩa duy nhất</b>, in rõ trên mặt bảng</p></div></div>"
+    },
+    {
+      "pre": "Điều 2",
+      "h3": "Bảy câu định nghĩa — cổng chặn, không phải lời khuyên",
+      "html": "<div class=\"tw\"><table style=\"min-width:600px\"><thead><tr><th class=\"num\">#</th><th>⛔ Đừng hỏi thế này</th><th>✅ Hỏi thế này</th></tr></thead><tbody><tr><td class=\"num\">1</td><td><i>Booked hay collected revenue?</i></td><td>Tính lúc khách <b>ký</b>, lúc <b>tiền về</b>, hay lúc <b>làm xong</b>?</td></tr><tr class=\"hl\"><td class=\"num\">2</td><td><i>Grain theo transaction date?</i></td><td>Một ca ký tháng 9, làm tháng 10, trả nốt tháng 11 — chị muốn nó nằm ở <b>tháng nào</b>?</td></tr><tr class=\"hl\"><td class=\"num\">3</td><td><i>Xử lý refund thế nào?</i></td><td>Khách hoàn tiền thì trừ vào tháng nào? <b>Thẻ trả trước</b> tính lúc bán hay lúc dùng?</td></tr><tr><td class=\"num\">4</td><td><i>Segment khách?</i></td><td>Có tính khách <b>tự đi vào</b> không, hay chỉ tính khách do quảng cáo kéo về?</td></tr><tr><td class=\"num\">5</td><td><i>Dimension chính?</i></td><td>Xem theo <b>chiến dịch</b>, theo <b>cơ sở</b>, hay theo <b>nhân viên</b>?</td></tr><tr><td class=\"num\">6</td><td>—</td><td>Số này <b>trước thuế hay sau thuế</b>?</td></tr><tr><td class=\"num\">7</td><td><i>Allocation rule?</i></td><td>Khách mua <b>gói 3 dịch vụ</b> thì tính vào dịch vụ nào?</td></tr></tbody></table></div><div class=\"note warn\"><p><b>Câu 2 là câu đắt nhất.</b> Một ca đặt cọc tháng 9, làm tháng 10, trả nốt tháng 11 sẽ rơi vào <b>ba tháng khác nhau</b> tuỳ mốc chọn. Đây là nguyên nhân số một của chênh lệch giữa báo cáo Marketing và sổ Kế toán.</p><p style=\"margin-bottom:0\"><b>Câu 3 có bẫy thẻ trả trước:</b> ghi nhận lúc bán thì tháng đó đẹp, tháng sau trống; ghi nhận lúc dùng thì ngược lại. Phải chốt <b>một lần cho mọi báo cáo</b>, không đổi theo từng ca.</p></div>"
+    },
+    {
+      "pre": "Điều 3",
+      "h3": "Luật cộng ngang — bốn báo cáo không cộng được với nhau",
+      "html": "<div class=\"note stop\"><p style=\"margin-bottom:0\"><b>Doanh số MKT + Doanh số Cơ sở + Doanh số Thương hiệu ≠ Doanh số Tập đoàn.</b><br>Bốn báo cáo dùng <b>bốn trục</b> và <b>ba mốc thời gian</b> khác nhau. Chúng không phải bốn mảnh của một cái bánh — chúng là <b>bốn cách chụp cùng một cái bánh từ bốn góc</b>.</p></div><div class=\"tw\"><table style=\"min-width:600px\"><thead><tr><th>Báo cáo</th><th>Trục</th><th>Mốc mặc định</th><th>Bẫy đặc trưng</th></tr></thead><tbody><tr class=\"hl\"><td><b>① Doanh số MKT</b></td><td>Nguồn lead</td><td>Ngày chốt</td><td>Độ trễ lead→chốt làm ROAS theo tháng lịch bị lệch</td></tr><tr><td><b>② Doanh số Cơ sở</b></td><td>Nơi thực hiện</td><td>Ngày thực hiện</td><td>Khách chốt ở A làm ở B — tính cho ai</td></tr><tr><td><b>③ Doanh số Thương hiệu</b></td><td>Thương hiệu</td><td>Ngày thu tiền</td><td>So kỳ không chuẩn hoá theo số ngày làm việc</td></tr><tr class=\"hl\"><td><b>④ Doanh số Tập đoàn</b></td><td>Toàn tập đoàn</td><td>Ngày thu tiền</td><td>Khách dùng nhiều brand bị <b>đếm hai lần</b></td></tr><tr><td>⑤ Doanh số dịch vụ <i>(phái sinh)</i></td><td>Dịch vụ</td><td>theo báo cáo mẹ</td><td>Gói combo chưa có quy tắc phân bổ</td></tr><tr><td>⑥ Kết cấu doanh số MKT <i>(phái sinh)</i></td><td>Nguồn × dịch vụ</td><td>theo ①</td><td>Tỷ trọng không đọc được khi mẫu nhỏ</td></tr></tbody></table></div><h3 class=\"sub\" style=\"margin:22px 0 10px\">Ba dòng bắt buộc in trên MỌI báo cáo</h3><pre class=\"code\" style=\"max-height:none\">Loại doanh số : [ghi nhận / thực thu / đã thực hiện]\nMốc thời gian : [ngày chốt / ngày thực hiện / ngày thu tiền]\nPhạm vi       : [khách nào · cơ sở nào · gồm/trừ gì]  ·  Nguồn: […]  ·  Cập nhật: […]</pre><p class=\"dim\" style=\"margin:10px 0 0\">⛔ Thiếu ba dòng này thì báo cáo <b>không được phát hành</b> — không phải vì hình thức, mà vì nó sẽ bị đem so với bảng khác định nghĩa, và cuộc họp sẽ nói về <b>số</b> thay vì nói về <b>việc</b>.</p>"
+    },
+    {
+      "pre": "Điều 4",
+      "h3": "Hai cổng chặn và ba loại yêu cầu",
+      "html": "<div class=\"gates\"><div class=\"gate\"><span class=\"g-n\">A</span><b>Cổng A — Verify · 8 ô</b><span class=\"cond\">chạy TRƯỚC khi trình người yêu cầu</span><p>A1 có câu hỏi kinh doanh + quyết định · <b>A2 đủ bảy câu định nghĩa</b> · A3 chỉ số có <b>mẫu số</b> · A4 dữ liệu <b>tồn tại</b> · A5 độ mịn đủ · A6 có người sở hữu + người duyệt · A7 có tần suất + hạn chót · A8 không trùng báo cáo cũ.</p><p style=\"margin-top:7px\"><b>A2 là ô trượt nhiều nhất.</b> A4 trượt → nói thẳng <i>“hệ thống chưa có”</i>, ⛔ không hứa rồi để kỹ thuật phát hiện sau.</p></div><div class=\"gate\"><span class=\"g-n\">B</span><b>Cổng B — Người yêu cầu duyệt</b><span class=\"cond\">chạy TRƯỚC khi chuyển kỹ thuật</span><p>In <b>hai thứ</b> rồi dừng: ① phiếu Order bản người-đọc-được · ② <b>mẫu báo cáo</b> với số giả.</p><p style=\"margin-top:7px\">⚠️ Số trong mẫu phải <b>nhìn là biết giả</b> — dùng <code>1.000</code> hoặc <code>[số mẫu]</code>. ⛔ Không dùng số trông như thật: sẽ có người chụp màn hình đi báo cáo.</p></div></div><h3 class=\"sub\" style=\"margin:22px 0 10px\">Ba loại yêu cầu — xử khác nhau</h3><div class=\"tw\"><table style=\"min-width:560px\"><thead><tr><th>Loại</th><th>Dấu hiệu</th><th>Cách xử</th></tr></thead><tbody><tr><td><b>Định kỳ</b></td><td><i>“tháng nào cũng cần”</i></td><td>Làm đủ 6 bước. Loại đáng đầu tư nhất</td></tr><tr class=\"hl\"><td><b>Một lần</b></td><td><i>“cho chị xem nhanh”</i></td><td>⛔ <b>Không dựng dashboard.</b> Một truy vấn, ghi rõ <i>không bảo trì</i></td></tr><tr><td><b>Khẩn</b></td><td><i>“sếp hỏi, cần hôm nay”</i></td><td>Vẫn chốt bảy câu, rút gọn mẫu. ⛔ Không bỏ cổng A</td></tr></tbody></table></div><div class=\"note warn\"><p style=\"margin-bottom:0\"><b>Loại 2 bị nhầm thành loại 1 rất thường xuyên</b> — và đó là cách một đội số liệu ngập trong 40 dashboard mà 35 cái không ai mở. Hỏi thẳng một câu: <i>“cái này cần hằng tháng hay chỉ lần này thôi ạ?”</i></p></div>"
+    },
+    {
+      "pre": "",
+      "h3": "Nửa tay — <code>order.py</code> kiểm cổng bằng máy",
+      "html": "<div class=\"cc\" style=\"border-top-color:var(--accent-soft)\"><span class=\"tag\">Dòng lệnh</span><h3>Ba lệnh</h3><pre class=\"code\" style=\"max-height:none\">python tools/order.py kiem    &lt;phieu.json&gt;   # cổng A, 8 ô\npython tools/order.py phieu   &lt;phieu.json&gt;   # in phiếu bản người đọc\npython tools/order.py bangiao &lt;phieu.json&gt;   # gói bàn giao kỹ thuật</pre><p class=\"meta\">Không cần thư viện ngoài. Phiếu mẫu trong repo <b>cố ý để trượt ô A4</b>, để thấy cổng chặn hoạt động ngay lần chạy đầu.</p></div><div class=\"grid g2\" style=\"margin-top:14px\"><div class=\"cc\" style=\"border-top-color:var(--do)\"><span class=\"tag\">Tự chặn</span><h3>Hai thứ script không cho qua</h3><p class=\"meta\">① Cổng A chưa đủ 8 ô → ⛔ không bàn giao<br>② Người duyệt chưa ký (<code>ngay_duyet</code> trống) → ⛔ không bàn giao</p></div><div class=\"cc\" style=\"border-top-color:var(--cam)\"><span class=\"tag\">Cảnh báo</span><h3>Bốn thứ script nhắc mà không chặn</h3><p class=\"meta\">Mốc <b>lệch mặc định</b> của loại báo cáo · nghiệm thu <b>không đếm được</b> (<i>dễ nhìn · chạy mượt</i>) · tần suất <i>một lần</i> chưa ghi <b>không bảo trì</b> · phiếu có <b>GIẢ ĐỊNH</b> chưa chắc người duyệt đã đọc</p></div></div><div class=\"note\"><p style=\"margin-bottom:0\">⛔ Script <b>không truy vấn dữ liệu và không dựng báo cáo</b>. Nó chỉ kiểm phiếu — đúng như agent chỉ viết Order chứ không dựng dashboard.</p></div>"
+    }
+  ],
+
+  "muc": ["Cài đặt", "Prompt mẫu", "Bốn điều phải biết", "Việc đang chặn"],
+  "chan_intro": "Agent cài xong là tiếp nhận yêu cầu được ngay. Nhưng có <b>ba việc phải làm trước khi dùng thật</b>, và vài ranh giới nó không bước qua.",
+  "chan": [
+    {"muc": "🔴", "viec": "<b>Chốt bảy câu định nghĩa dùng chung</b> cho toàn tập đoàn, bằng văn bản", "ai": "Team Số liệu + Kế toán", "chan": "Agent vẫn chạy, nhưng phải hỏi lại <b>từng ca</b> — và hai phòng vẫn ra hai số khác nhau", "hl": true},
+    {"muc": "🔴", "viec": "Điền <b>bảng nguồn dữ liệu</b> trong <code>so-E</code> — hệ thống · bảng · người sở hữu · độ trễ", "ai": "Team Số liệu", "chan": "Ô <b>A4</b> cổng A luôn trượt", "hl": true},
+    {"muc": "🟠", "viec": "Lập <b>danh mục báo cáo đang chạy</b>", "ai": "Team Số liệu", "chan": "Ô <b>A8</b> không rà trùng được", "hl": false},
+    {"muc": "🟠", "viec": "<b>Khoá định danh khách dùng chung toàn tập đoàn</b>", "ai": "CNTT", "chan": "Báo cáo ④ chỉ dựng được ở mức <b>doanh số</b>, chưa dựng được ở mức <b>khách</b>", "hl": false},
+    {"muc": "🟠", "viec": "<b>Gắn trường nguồn cho lead</b> ngay từ lúc tạo", "ai": "CNTT + CSKH", "chan": "Báo cáo ① không cắt được theo chiến dịch cho kỳ cũ — ⛔ <b>không cắt ngược lại được</b>", "hl": true},
+    {"muc": "🟡", "viec": "Bảng <b>chuẩn hoá tên dịch vụ</b> và người duy trì", "ai": "Vận hành", "chan": "Cắt theo dịch vụ ra số lệch vì cùng một dịch vụ có nhiều cách gõ tên", "hl": false},
+    {"muc": "🟡", "viec": "Quy tắc <b>phân bổ gói combo</b>", "ai": "Kế toán", "chan": "Báo cáo ⑤ Doanh số dịch vụ", "hl": false}
+  ],
+  "chan_ghi": [
+    {"kieu": "stop", "html": "<p style=\"margin-bottom:0\"><b>Dòng 🟠 về trường nguồn cho lead là việc có hạn chót tự nhiên.</b> Không gắn từ đầu thì ba tháng sau <b>không cắt ngược lại được</b> — dữ liệu cũ vĩnh viễn không có nguồn, và báo cáo Doanh số MKT chỉ dựng được từ ngày bắt đầu gắn trở đi. Đây là việc 30 phút ở tuần đầu, hoặc là việc không bao giờ làm được nữa.</p>"},
+    {"kieu": "ok", "html": "<p style=\"margin-bottom:0\"><b>Việc có đòn bẩy cao nhất là dòng 🔴 đầu tiên.</b> Chốt bảy câu định nghĩa <b>một lần</b>, dùng cho mọi báo cáo về sau — và nó cắt đứt loại tranh cãi tốn nhiều thời gian nhất giữa Marketing, Cơ sở và Kế toán. Có thể dùng chính agent này để soạn bản đề xuất rồi đưa Kế toán duyệt.</p>"},
+    {"kieu": "warn", "html": "<p style=\"margin-bottom:0\">⛔ <b>Ranh giới cứng của agent:</b> không có dữ liệu và không đoán số · không đưa tên, SĐT, email, ảnh hay bệnh án khách vào báo cáo · không tự chốt định nghĩa thay Kế toán · không im lặng làm hai bảng dùng hai định nghĩa khác nhau cho cùng một chữ.</p>"}
+  ],
+  "footer": "<b>Agent soạn Order và trình. Người yêu cầu duyệt. Kỹ thuật dựng. Kế toán chốt định nghĩa.</b> Bốn vai, không ai làm thay ai. <i>Quyết định cuối luôn thuộc người dùng.</i>"
+}

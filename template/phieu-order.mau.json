@@ -1,0 +1,167 @@
+{
+  "ma_order": "ORD-2026-1023-MKT-01",
+  "ngay": "2026-10-23",
+  "trang_thai": "NHAP",
+  "nguoi_yeu_cau": {
+    "ten": "Trưởng phòng Marketing",
+    "bo_phan": "Marketing",
+    "thuong_hieu": "Kangnam"
+  },
+  "nguoi_duyet": {
+    "ten": "Trưởng phòng Marketing",
+    "ngay_duyet": null,
+    "hinh_thuc": "xác nhận trong chat sau khi xem mẫu báo cáo"
+  },
+  "cau_hoi_kinh_doanh": "Tiền quảng cáo line Mũi tháng 10 có về không, và về từ chiến dịch nào?",
+  "quyet_dinh_di_kem": "Nhóm nào ROAS dưới ngưỡng thì cắt ngân sách tháng 11. Nhóm nào trên ngưỡng thì tăng 20%.",
+  "loai_bao_cao": "doanh-so-mkt",
+  "dinh_nghia": {
+    "loai_doanh_so": "ghi_nhan",
+    "moc_thoi_gian": "ngay_chot",
+    "gom_tru": {
+      "hoan_huy": "trừ vào tháng phát sinh hoàn huỷ, không hồi tố tháng gốc",
+      "chiet_khau": "giá sau chiết khấu",
+      "the_tra_truoc": "ghi nhận khi DÙNG thẻ, không ghi nhận khi bán thẻ",
+      "tra_gop": "ghi nhận trọn gói tại ngày chốt",
+      "dich_vu_tang": "tính 0đ"
+    },
+    "tinh_ai": [
+      "khách mới",
+      "khách cũ quay lại do chiến dịch"
+    ],
+    "quy_ve": "nguon_lead",
+    "vat": "truoc_vat",
+    "da_dich_vu": "Tách theo từng dịch vụ. Gói combo phân bổ theo tỷ lệ giá niêm yết của từng phần.",
+    "quy_gan_nguon": "cham_cuoi"
+  },
+  "chi_so": [
+    {
+      "ten": "Chi quảng cáo",
+      "cong_thuc": "tổng spend",
+      "tu_so": "spend",
+      "mau_so": "không có",
+      "don_vi": "VND"
+    },
+    {
+      "ten": "Lead hợp lệ",
+      "cong_thuc": "đếm lead đã qua lọc rác",
+      "tu_so": "lead CRM đã lọc",
+      "mau_so": "không có",
+      "don_vi": "lead"
+    },
+    {
+      "ten": "CPL",
+      "cong_thuc": "chi ÷ lead hợp lệ",
+      "tu_so": "chi quảng cáo",
+      "mau_so": "lead HỢP LỆ (không phải lead thô)",
+      "don_vi": "VND/lead"
+    },
+    {
+      "ten": "Tỷ lệ chốt",
+      "cong_thuc": "ca chốt ÷ đến khám",
+      "tu_so": "ca chốt",
+      "mau_so": "ĐẾN KHÁM (không phải lead)",
+      "don_vi": "%"
+    },
+    {
+      "ten": "ROAS",
+      "cong_thuc": "doanh số ÷ chi",
+      "tu_so": "doanh số ghi nhận",
+      "mau_so": "chi quảng cáo",
+      "don_vi": "lần"
+    },
+    {
+      "ten": "Độ trễ lead → chốt",
+      "cong_thuc": "trung vị số ngày từ ngày tạo lead tới ngày chốt",
+      "tu_so": "số ngày",
+      "mau_so": "không có",
+      "don_vi": "ngày"
+    }
+  ],
+  "chieu_cat": [
+    "tháng",
+    "chiến dịch",
+    "nhóm quảng cáo",
+    "dịch vụ"
+  ],
+  "pham_vi_thoi_gian": {
+    "ky_bao_cao": "01–31/10/2026",
+    "ky_so_sanh": "01–30/09/2026",
+    "canh_bao_cung_loai_ky": "Tháng 10 có 31 ngày, tháng 9 có 30 ngày. So tổng thì phải kèm cột trung bình/ngày."
+  },
+  "nguon_du_lieu": [
+    {
+      "he_thong": "Meta Ads",
+      "bang": "[CHỜ XÁC NHẬN]",
+      "nguoi_so_huu": "Ads",
+      "do_tre": "~vài giờ"
+    },
+    {
+      "he_thong": "Google Ads",
+      "bang": "[CHỜ XÁC NHẬN]",
+      "nguoi_so_huu": "Ads",
+      "do_tre": "~vài giờ"
+    },
+    {
+      "he_thong": "CRM Caresoft",
+      "bang": "[CHỜ XÁC NHẬN]",
+      "nguoi_so_huu": "[CHỜ XÁC NHẬN]",
+      "do_tre": "[CHỜ XÁC NHẬN]"
+    }
+  ],
+  "tan_suat": {
+    "kieu": "hang_tuan",
+    "gio_cap_nhat": "08:00 thứ Hai",
+    "ghi_chu": "Số tuần cuối tháng chỉ chốt sau khi Kế toán khoá sổ."
+  },
+  "nghiem_thu": [
+    "Tổng doanh số tháng 10 khớp CRM, lệch dưới 1%",
+    "Lọc một chiến dịch bất kỳ ra đúng số ca chốt đếm được trong CRM",
+    "Cột CPL dùng mẫu số là lead HỢP LỆ, không phải lead thô",
+    "Mặt bảng có đủ ba dòng: loại doanh số · mốc thời gian · phạm vi và nguồn",
+    "Có cột độ trễ lead → chốt"
+  ],
+  "han_chot": {
+    "ngay": "2026-10-30",
+    "uu_tien": "cao"
+  },
+  "cong_a": {
+    "A1_co_cau_hoi_kinh_doanh": true,
+    "A2_du_bay_cau_dinh_nghia": true,
+    "A3_chi_so_co_mau_so": true,
+    "A4_du_lieu_ton_tai": false,
+    "A5_do_min_du": true,
+    "A6_co_nguoi_so_huu": true,
+    "A7_co_tan_suat_han_chot": true,
+    "A8_khong_trung_bao_cao_cu": true
+  },
+  "bao_cao_lien_quan": [
+    "Báo cáo Doanh số Cơ sở — ⛔ KHÔNG cộng ngang với báo cáo này (khác trục, khác mốc)"
+  ],
+  "rui_ro_du_lieu": [
+    "Lead chưa gắn trường nguồn từ trước tháng 8/2026 → không cắt ngược được theo chiến dịch cho kỳ cũ",
+    "Khách thấy quảng cáo tháng 9 chốt tháng 11 → ROAS theo tháng lịch bị lệch, phải đọc kèm cột độ trễ"
+  ],
+  "gia_dinh": [
+    "Mốc ngày chốt là mặc định của loại báo cáo Doanh số MKT, người yêu cầu đã xác nhận giữ nguyên",
+    "Ngưỡng ROAS để cắt/tăng ngân sách chưa có — tạm để trống chờ Ban điều hành",
+    "Quy gán nguồn = chạm cuối, vì CRM hiện chỉ lưu một trường nguồn ghi đè lần cuối — chưa làm được chạm đầu. Đã ghi vào [CHỜ XÁC NHẬN]."
+  ],
+  "cho_xac_nhan": [
+    {
+      "muc": "Tên bảng và trường trong Meta Ads / Google Ads / CRM Caresoft",
+      "ai_cap": "Team Số liệu",
+      "chan_gi": "⛔ Cổng A ô A4 — chưa qua, chưa chuyển kỹ thuật"
+    },
+    {
+      "muc": "Ngưỡng ROAS để ra quyết định cắt/tăng ngân sách",
+      "ai_cap": "Ban điều hành",
+      "chan_gi": "Không chặn dựng, nhưng báo cáo chưa ra quyết định được"
+    },
+    {
+      "muc": "CRM có lưu lịch sử chạm của khách không (quyết định quy gán nguồn làm được kiểu nào)",
+      "ai_cap": "Team Số liệu + CNTT",
+      "chan_gi": "Báo cáo kênh chỉ chạy được chạm cuối cho tới khi có câu trả lời"
+    }
+  ]
+}
